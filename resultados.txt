@@ -1,0 +1,124 @@
+
+Observaciones usadas: 34  ( 1991 - 2024 )
+
+===== (b) ESTADÍSTICOS DESCRIPTIVOS =====
+           media mediana  desv  minimo maximo    cv
+lconsumo  25.744  25.714 0.338  25.234 26.344 0.013
+lpib      26.092  26.105 0.339  25.535 26.618 0.013
+tasa_real  9.487   8.803 6.061 -11.138 23.378 0.639
+inflacion  9.616   6.480 7.965   2.017 30.388 0.828
+desempleo 11.538  10.802 3.080   7.800 20.520 0.267
+
+----- Matriz de correlaciones -----
+          lconsumo   lpib tasa_real inflacion desempleo
+lconsumo     1.000  0.993    -0.345    -0.632    -0.284
+lpib         0.993  1.000    -0.373    -0.703    -0.273
+tasa_real   -0.345 -0.373     1.000     0.525    -0.204
+inflacion   -0.632 -0.703     0.525     1.000    -0.124
+desempleo   -0.284 -0.273    -0.204    -0.124     1.000
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+
+===== (c) ESTIMACIÓN MCO =====
+
+Call:
+lm(formula = lconsumo ~ lpib + tasa_real + inflacion + desempleo, 
+    data = base)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.047131 -0.013289  0.000125  0.012878  0.044823 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -3.3333640  0.4665175  -7.145 7.29e-08 ***
+lpib         1.1101814  0.0173307  64.059  < 2e-16 ***
+tasa_real   -0.0003242  0.0007057  -0.459  0.64935    
+inflacion    0.0067564  0.0007432   9.091 5.48e-10 ***
+desempleo    0.0041901  0.0013855   3.024  0.00518 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.02051 on 29 degrees of freedom
+Multiple R-squared:  0.9968,	Adjusted R-squared:  0.9963 
+F-statistic:  2234 on 4 and 29 DF,  p-value: < 2.2e-16
+
+
+Intervalos de confianza al 95%:
+              2.5 %  97.5 %
+(Intercept) -4.2875 -2.3792
+lpib         1.0747  1.1456
+tasa_real   -0.0018  0.0011
+inflacion    0.0052  0.0083
+desempleo    0.0014  0.0070
+
+===== (d) CONTRASTES DE SUPUESTOS DE GAUSS-MARKOV =====
+
+--- Linealidad / especificación: RESET de Ramsey (potencias 2 y 3 del ajustado) ---
+
+	RESET test
+
+data:  modelo
+RESET = 13.85, df1 = 2, df2 = 27, p-value = 7.253e-05
+
+
+--- Multicolinealidad: VIF (regla: VIF > 10 problema grave; > 5 atención) ---
+     lpib tasa_real inflacion desempleo 
+    2.709     1.435     2.749     1.428 
+
+--- Heterocedasticidad: Breusch-Pagan ---
+
+	studentized Breusch-Pagan test
+
+data:  modelo
+BP = 4.7289, df = 4, p-value = 0.3163
+
+
+--- Heterocedasticidad: White (versión con ajustado y ajustado^2) ---
+
+	studentized Breusch-Pagan test
+
+data:  modelo
+BP = 5.3039, df = 2, p-value = 0.07051
+
+
+--- Autocorrelación: Durbin-Watson ---
+
+	Durbin-Watson test
+
+data:  modelo
+DW = 0.89644, p-value = 1.47e-05
+alternative hypothesis: true autocorrelation is greater than 0
+
+
+--- Autocorrelación: Breusch-Godfrey (orden 1 y orden 2) ---
+
+	Breusch-Godfrey test for serial correlation of order up to 1
+
+data:  modelo
+LM test = 8.3776, df = 1, p-value = 0.003799
+
+
+	Breusch-Godfrey test for serial correlation of order up to 2
+
+data:  modelo
+LM test = 8.5065, df = 2, p-value = 0.01422
+
+
+--- Normalidad de residuos: Jarque-Bera ---
+
+	Jarque Bera Test
+
+data:  residuals(modelo)
+X-squared = 0.0139, df = 2, p-value = 0.9931
+
+null device 
+          1 
